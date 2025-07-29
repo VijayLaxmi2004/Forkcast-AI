@@ -13,18 +13,41 @@
       <span id="loginTab" class="active">Login</span>
       <span id="signupTab">Signup</span>
     </div>
+
     <form id="authForm">
-      <input type="text" id="loginEmail" placeholder="Email or Username" required>
-      <input type="password" id="loginPass" placeholder="Password" required>
+      <div id="formFields">
+        <input type="text" id="loginEmail" placeholder="Email or Username" required>
+        <input type="password" id="loginPass" placeholder="Password" required>
+      </div>
       <button id="loginBtn" type="submit">Login</button>
     </form>
   </div>
 
-  <script>
+  <!-- Firebase Auth using ES Module -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-auth.js";
+
+    // ✅ Your Firebase Config
+    const firebaseConfig = {
+      apiKey: "AIzaSyDFvTEAc_ERUQDIl7Bo5uwtkQrbm0fvksQ",
+      authDomain: "forkcast-ai-b733d.firebaseapp.com",
+      projectId: "forkcast-ai-b733d",
+      storageBucket: "forkcast-ai-b733d.appspot.com",
+      messagingSenderId: "174542084273",
+      appId: "1:174542084273:web:0270992830c318fc1daa90"
+    };
+
+    // ✅ Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // ✅ Tab Switch Logic
     const loginTab = document.getElementById("loginTab");
     const signupTab = document.getElementById("signupTab");
-    const authForm = document.getElementById("authForm");
+    const formFields = document.getElementById("formFields");
     const loginBtn = document.getElementById("loginBtn");
+    const authForm = document.getElementById("authForm");
 
     let isLogin = true;
 
@@ -36,39 +59,45 @@
       loginTab.classList.toggle("active", login);
       signupTab.classList.toggle("active", !login);
       loginBtn.innerText = login ? "Login" : "Signup";
-      authForm.innerHTML = login
+
+      formFields.innerHTML = login
         ? `<input type="text" id="loginEmail" placeholder="Email or Username" required>
-           <input type="password" id="loginPass" placeholder="Password" required>
-           <button id="loginBtn" type="submit">Login</button>`
+           <input type="password" id="loginPass" placeholder="Password" required>`
         : `<input type="text" id="signupEmail" placeholder="Email or Username" required>
-           <input type="password" id="signupPass" placeholder="Password" required>
-           <button id="loginBtn" type="submit">Signup</button>`;
+           <input type="password" id="signupPass" placeholder="Password" required>`;
     }
 
-    switchForm(true);
-
-    authForm.onsubmit = (e) => {
+    // ✅ Auth Form Submission
+    authForm.onsubmit = async (e) => {
       e.preventDefault();
 
       if (isLogin) {
         const email = document.getElementById("loginEmail").value;
         const pass = document.getElementById("loginPass").value;
-        const stored = JSON.parse(localStorage.getItem("forkcastUser"));
 
-        if (stored && stored.email === email && stored.pass === pass) {
+        try {
+          await signInWithEmailAndPassword(auth, email, pass);
           alert("Login successful!");
           window.location.href = "recipes.html";
-        } else {
-          alert("Invalid credentials!");
+        } catch (error) {
+          alert("Login failed: " + error.message);
         }
       } else {
         const email = document.getElementById("signupEmail").value;
         const pass = document.getElementById("signupPass").value;
-        localStorage.setItem("forkcastUser", JSON.stringify({ email, pass }));
-        alert("Signup successful! Now login.");
-        switchForm(true);
+
+        try {
+          await createUserWithEmailAndPassword(auth, email, pass);
+          alert("Signup successful! Now login.");
+          switchForm(true);
+        } catch (error) {
+          alert("Signup failed: " + error.message);
+        }
       }
     };
+
+    // ✅ Start with login form
+    switchForm(true);
   </script>
 </body>
 </html>
