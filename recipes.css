@@ -1,0 +1,265 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to bottom, #0D0D0D, #1C1C1C, #4A0D0D, #D72638);
+  color: #F5F5F5;
+  padding: 40px 20px 60px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  max-width: 1280px;
+  margin: auto;
+  padding-top: 30px;
+  flex-grow: 1;
+}
+
+.heading {
+  text-align: center;
+  font-size: 38px;
+  color: #FF4C29;
+  margin-bottom: 20px;
+}
+
+.card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 50px;
+  margin-top: 60px;
+}
+
+.recipe-card {
+  width: 280px; /* 👈 narrower card width */
+  background: #1C1C1C;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 12px #990F02;
+  transition: transform 0.3s;
+  height: 230px;
+}
+
+.recipe-card:hover {
+  transform: scale(1.03);
+}
+
+.recipe-card img {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  border-bottom: 2px solid #D72638;
+}
+
+.recipe-card p {
+  padding: 10px;
+  font-size: 14px;
+  text-align: center;
+  color: #F5F5F5;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: #1C1C1C;
+  color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  width: 60%;
+  max-width: 600px;
+  text-align: center;
+  box-shadow: 0 0 20px #D72638;
+  position: relative;
+}
+
+.modal-content img {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  margin-bottom: 20px;
+  border-radius: 8px;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 16px;
+  font-size: 28px;
+  color: #fff;
+  cursor: pointer;
+}
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background: rgba(0,0,0,0.6);
+}
+
+.modal-content {
+  background: #1c1c1c;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 10px;
+  width: 500px;
+  color: white;
+  box-shadow: 0 0 20px rgba(255,77,77,0.8);
+}
+
+.close {
+  color: #ff4d4d;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.recipes-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 30px;
+}
+
+.recipe-card {
+  background: #222;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 240px;
+  box-shadow: 0 0 10px #ff4321;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.recipe-card:hover {
+  transform: scale(1.05);
+}
+
+.recipe-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.recipe-card p {
+  padding: 10px;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  text-align: center;
+  background: #111;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: #111;
+  color: white;
+  padding: 20px;
+  max-width: 500px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 0 15px #ff4321;
+}
+
+.modal-content img {
+  max-width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.close {
+  color: #fff;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.quick-title {
+  text-align: center;
+  font-size: 36px;
+  color: #df6c15;
+  margin-top: 40px;
+  font-family: 'Playfair Display', serif;
+}
+
+.recipes-wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  padding: 40px 100px;
+  max-width: 1400px;
+  margin: auto;
+}
+
+.recipe-card {
+  background-color: #111;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
+  transition: transform 0.3s;
+  cursor: pointer;
+  text-align: center;
+}
+
+.recipe-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.recipe-card p {
+  padding: 10px;
+  color: #fff;
+  font-weight: 500;
+  font-size: 16px;
+  background-color: #222;
+}
+
+.streamlit-btn-container {
+  display: flex;
+  justify-content: center;
+  margin: 50px 0 80px;
+}
+
+.streamlit-btn {
+  background: linear-gradient(to right, #ed7777, #5a1a1a);
+  color: white;
+  padding: 14px 28px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 0 5px 15px rgba(124, 10, 10, 0.3);
+  transition: background 0.3s ease, transform 0.2s ease;
+  font-family: 'Poppins', sans-serif;
+}
+
+.streamlit-btn:hover {
+  background: linear-gradient(to right, #e60000, #990000);
+  transform: translateY(-2px);
+}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Forkcast Auth</title>
+  <link rel="stylesheet" href="auth.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Poppins&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="auth-box">
+    <h1>🍴 <span style="color: #ff4321;">Forkcast</span></h1>
+    <div class="tabs">
+      <span id="loginTab" class="active">Login</span>
+      <span id="signupTab">Signup</span>
+    </div>
+    <form id="authForm">
+      <input type="text" id="loginEmail" placeholder="Email or Username" required>
+      <input type="password" id="loginPass" placeholder="Password" required>
+      <button id="loginBtn" type="submit">Login</button>
+    </form>
+  </div>
+
+  <script>
+    const loginTab = document.getElementById("loginTab");
+    const signupTab = document.getElementById("signupTab");
+    const authForm = document.getElementById("authForm");
+    const loginBtn = document.getElementById("loginBtn");
+
+    let isLogin = true;
+
+    loginTab.onclick = () => switchForm(true);
+    signupTab.onclick = () => switchForm(false);
+
+    function switchForm(login) {
+      isLogin = login;
+      loginTab.classList.toggle("active", login);
+      signupTab.classList.toggle("active", !login);
+      loginBtn.innerText = login ? "Login" : "Signup";
+      authForm.innerHTML = login
+        ? `<input type="text" id="loginEmail" placeholder="Email or Username" required>
+           <input type="password" id="loginPass" placeholder="Password" required>
+           <button id="loginBtn" type="submit">Login</button>`
+        : `<input type="text" id="signupEmail" placeholder="Email or Username" required>
+           <input type="password" id="signupPass" placeholder="Password" required>
+           <button id="loginBtn" type="submit">Signup</button>`;
+    }
+
+    switchForm(true);
+
+    authForm.onsubmit = (e) => {
+      e.preventDefault();
+
+      if (isLogin) {
+        const email = document.getElementById("loginEmail").value;
+        const pass = document.getElementById("loginPass").value;
+        const stored = JSON.parse(localStorage.getItem("forkcastUser"));
+
+        if (stored && stored.email === email && stored.pass === pass) {
+          alert("Login successful!");
+          window.location.href = "recipes.html";
+        } else {
+          alert("Invalid credentials!");
+        }
+      } else {
+        const email = document.getElementById("signupEmail").value;
+        const pass = document.getElementById("signupPass").value;
+        localStorage.setItem("forkcastUser", JSON.stringify({ email, pass }));
+        alert("Signup successful! Now login.");
+        switchForm(true);
+      }
+    };
+  </script>
+</body>
+</html>

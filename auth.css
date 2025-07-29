@@ -1,0 +1,79 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to bottom, #111, #4A0D0D,#D72638);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.auth-box {
+  background-color: #111;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px #901903;
+  width: 360px;
+  text-align: center;
+}
+
+.auth-box h1 {
+  font-family: 'Playfair Display', serif;
+  color: #ff4321;
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  margin-bottom: 20px;
+}
+
+.tabs span {
+  color: #aaa;
+  cursor: pointer;
+  font-size: 16px;
+  padding-bottom: 5px;
+  border-bottom: 2px solid transparent;
+}
+
+.tabs .active {
+  color: #ff4321;
+  border-color: #ff4321;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+input {
+  padding: 12px;
+  background-color: #222;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 14px;
+}
+
+input::placeholder {
+  color: #888;
+}
+
+button {
+  background-color: #c82205;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: #e6321c;
+}
