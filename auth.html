@@ -27,16 +27,8 @@
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-app.js";
     import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-auth.js";
+    import { firebaseConfig } from "./config.js";
 
-    // ✅ Your Firebase Config
-    const firebaseConfig = {
-      apiKey: "AIzaSyDFvTEAc_ERUQDIl7Bo5uwtkQrbm0fvksQ",
-      authDomain: "forkcast-ai-b733d.firebaseapp.com",
-      projectId: "forkcast-ai-b733d",
-      storageBucket: "forkcast-ai-b733d.appspot.com",
-      messagingSenderId: "174542084273",
-      appId: "1:174542084273:web:0270992830c318fc1daa90"
-    };
 
     // ✅ Initialize Firebase
     const app = initializeApp(firebaseConfig);
